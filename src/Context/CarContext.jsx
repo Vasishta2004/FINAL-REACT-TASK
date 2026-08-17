@@ -3,27 +3,15 @@ import { createContext, useContext, useState } from "react";
 const CarContext = createContext();
 
 export function CarProvider({ children }) {
-  const [favorites, setFavorites] = useState([]);
-
-  function toggleFavorite(car) {
-    setFavorites((oldFavorites) => {
-      const exists = oldFavorites.find((item) => item.id === car.id);
-
-      if (exists) {
-        return oldFavorites.filter((item) => item.id !== car.id);
-      }
-
-      return [...oldFavorites, car];
-    });
-  }
+  const [cars, setCars] = useState([]);
 
   return (
-    <CarContext.Provider value={{ favorites, toggleFavorite }}>
+    <CarContext.Provider value={{ cars, setCars }}>
       {children}
     </CarContext.Provider>
   );
 }
 
-export function useCars() {
+export function useCarContext() {
   return useContext(CarContext);
 }
