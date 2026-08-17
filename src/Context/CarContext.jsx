@@ -12,6 +12,6 @@ export function CarProvider({ children }) {
   );
 }
 
-export function useCarContext() {
+export function useCars() {
   return useContext(CarContext);
 }
