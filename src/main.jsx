@@ -1,12 +1,21 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import App from "./App.jsx";
-import { CarProvider } from "./context/CarContext.jsx";
+import { BrowserRouter } from "react-router-dom";
 
-createRoot(document.getElementById("root")).render(
+import App from "./App";
+
+import { StudentProvider } from "./context/StudentContext";
+
+import "./index.css";
+
+createRoot(
+  document.getElementById("root")
+).render(
   <StrictMode>
-    <CarProvider>
-      <App />
-    </CarProvider>
+    <BrowserRouter>
+      <StudentProvider>
+        <App />
+      </StudentProvider>
+    </BrowserRouter>
   </StrictMode>
-);git add .
+);

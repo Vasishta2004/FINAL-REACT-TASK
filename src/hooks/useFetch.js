@@ -1,35 +1,40 @@
 import { useEffect, useState } from "react";
 
 function useFetch(url) {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    async function getData() {
+    const getData = async () => {
       try {
         setLoading(true);
+        setError("");
 
         const response = await fetch(url);
 
         if (!response.ok) {
-          throw new Error("Unable to fetch data");
+          throw new Error("API request failed");
         }
 
         const result = await response.json();
 
         setData(result);
-      } catch (err) {
-        setError(err.message);
+      } catch (error) {
+        setError("Unable to load API data.");
       } finally {
         setLoading(false);
       }
-    }
+    };
 
     getData();
   }, [url]);
 
-  return { data, loading, error };
+  return {
+    data,
+    loading,
+    error
+  };
 }
 
 export default useFetch;

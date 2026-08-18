@@ -1,5 +1,9 @@
 function Loading() {
-  return <div className="message">Loading cars...</div>;
+  return (
+    <div className="loading">
+      <h2>Loading...</h2>
+    </div>
+  );
 }
 
 export default Loading;
